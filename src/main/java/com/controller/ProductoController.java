@@ -28,6 +28,7 @@ public class ProductoController {
     @GetMapping("/listado")
     private String listado(Model model) {
         var productos = productoService.getProductos(false);
+        var categorias = productoService.getProductos(false);
         model.addAttribute("productos", productos);
         model.addAttribute("totalproductos", productos.size());
         return "/tipo/listado";
@@ -65,7 +66,9 @@ public class ProductoController {
     @GetMapping("/modificar/{idtipo}")
     public String tipoModificar(Producto producto, Model model) {
         producto = productoService.getProducto(producto);
+        var categorias = productoService.getProductos(false);
         model.addAttribute("producto", producto);
+         model.addAttribute("categorias", categorias);
         return "/tipo/modifica";
     }
 }
